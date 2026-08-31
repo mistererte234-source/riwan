@@ -1,0 +1,5 @@
+stitch_extracted/
+docs/*.zip
+generator.py
+.DS_Store
+Thumbs.db

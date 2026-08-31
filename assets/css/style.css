@@ -1,0 +1,224 @@
+/* ==========================================================================
+   RIWAN ARCHITECTURE & CONSTRUCTION (PT RIWAN SEJAHTERA ABADI)
+   Design System: Minimalist Editorial x Apple iOS Glassmorphism
+   Crafted with Precision by Lody
+   ========================================================================== */
+
+:root {
+  --font-display: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Color Palette - Light Mode */
+  --bg-surface: #FBF9F4;
+  --bg-surface-dim: #F0EEE9;
+  --bg-surface-card: #FFFFFF;
+  --text-main: #1B1C19;
+  --text-muted: #5F6368;
+  --text-dim: #8E9297;
+  --border-hairline: rgba(116, 120, 120, 0.25);
+  --border-strong: #1B1C19;
+  --brand-navy: #0F2B48;
+  --brand-amber: #EA8F1C;
+  --brand-slate: #6C7A89;
+  --glass-bg: rgba(251, 249, 244, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 8px 32px 0 rgba(15, 43, 72, 0.06);
+}
+
+.dark {
+  --bg-surface: #0E1013;
+  --bg-surface-dim: #16191E;
+  --bg-surface-card: #1A1E24;
+  --text-main: #F4F4F6;
+  --text-muted: #A0A5AD;
+  --text-dim: #606670;
+  --border-hairline: rgba(255, 255, 255, 0.12);
+  --border-strong: #F4F4F6;
+  --brand-navy: #1E4670;
+  --brand-amber: #F59E0B;
+  --brand-slate: #94A3B8;
+  --glass-bg: rgba(14, 16, 19, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* iOS Glassmorphism Utilities */
+.ios-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.ios-glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+}
+
+.dark .ios-glass-card {
+  background: rgba(26, 30, 36, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+}
+
+.ios-glass-hud {
+  background: rgba(15, 43, 72, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(234, 143, 28, 0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Hairline borders - Architectural Precision */
+.hairline-b { border-bottom: 1px solid var(--border-hairline); }
+.hairline-t { border-top: 1px solid var(--border-hairline); }
+.hairline-l { border-left: 1px solid var(--border-hairline); }
+.hairline-r { border-right: 1px solid var(--border-hairline); }
+.hairline-all { border: 1px solid var(--border-hairline); }
+
+/* Range Slider Custom Styling */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--bg-surface-dim);
+  border-radius: 999px;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-hairline);
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #1B1C19;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s ease;
+}
+
+.dark input[type='range']::-webkit-slider-thumb {
+  background: #EA8F1C;
+  border: 3px solid #16191E;
+  box-shadow: 0 4px 14px rgba(234, 143, 28, 0.4);
+}
+
+input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type='range']::-webkit-slider-thumb:active {
+  transform: scale(0.95);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-slate);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-amber);
+}
+
+/* Smooth reveal animation */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+
+/* Subtle noise texture overlay */
+.bg-noise {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.dark .bg-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Image mask reveal effect */
+.img-reveal-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.img-reveal-container img,
+.img-reveal-container .bg-cover {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-reveal-container:hover img,
+.img-reveal-container:hover .bg-cover {
+  transform: scale(1.04);
+}
+
+/* Floating animation */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+/* Button pulse on active */
+.btn-spring {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-spring:active {
+  transform: scale(0.96);
+}

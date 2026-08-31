@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PT RIWAN SEJAHTERA ABADI (RSA) | Architectural Design & Precision Construction</title>
+  <meta name="description" content="PT Riwan Sejahtera Abadi (RSA) - Perusahaan arsitektur & konstruksi presisi di Jakarta & Bali. Dari gambar kerja DED hingga eksekusi bangunan fisik berkualitas tinggi."/>
+  
+  <!-- Favicon / Logo -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png"/>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#FBF9F4",
+            "surface-dim": "#F0EEE9",
+            "surface-container": "#EAE8E3",
+            "surface-container-high": "#E4E2DD",
+            "on-surface": "#1B1C19",
+            "on-surface-variant": "#5F6368",
+            "primary": "#0F2B48",
+            "on-primary": "#FFFFFF",
+            "secondary": "#EA8F1C",
+            "on-secondary": "#FFFFFF",
+            "brand-navy": "#0F2B48",
+            "brand-amber": "#EA8F1C",
+            "brand-slate": "#6C7A89",
+            "outline-variant": "rgba(116, 120, 120, 0.25)"
+          },
+          fontFamily: {
+            "display": ["'Hanken Grotesk'", "sans-serif"],
+            "body": ["'Public Sans'", "sans-serif"],
+            "mono": ["'JetBrains Mono'", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  
+  <!-- Custom Style -->
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-brand-amber selection:text-white relative pb-20 md:pb-0">
+
+  <!-- Subtle Ambient Glow Background -->
+  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden opacity-30 dark:opacity-20">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-navy rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -right-40 w-96 h-96 bg-brand-amber rounded-full blur-3xl opacity-60"></div>
+  </div>
+
+  <!-- =========================================================================
+       TOP APP BAR / GLASS NAVIGATION
+       ========================================================================= -->
+  <header id="top-bar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ios-glass hairline-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      
+      <!-- Brand Lockup with Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="relative w-10 h-10 rounded-lg p-1 bg-white dark:bg-slate-900 border border-brand-amber/30 shadow-sm flex items-center justify-center transition-transform group-hover:scale-105">
+          <img src="assets/images/logo.png" alt="PT Riwan Sejahtera Abadi Logo" class="w-full h-full object-contain"/>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5">
+            <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-primary dark:text-white leading-none">RIWAN</span>
+            <span class="text-[10px] font-mono uppercase bg-brand-amber/15 text-brand-amber px-1.5 py-0.5 rounded font-semibold tracking-wider">RSA</span>
+          </div>
+          <span class="font-mono text-[9px] uppercase tracking-widest text-on-surface-variant dark:text-gray-400 hidden sm:block">PT RIWAN SEJAHTERA ABADI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-wider font-medium">
+        <a href="#projects" class="text-on-surface hover:text-brand-amber transition-colors">Portofolio</a>
+        <a href="#estimator" class="text-on-surface hover:text-brand-amber transition-colors flex items-center gap-1">
+          <span>Kalkulator RAB</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-amber animate-pulse"></span>
+        </a>
+        <a href="#services" class="text-on-surface hover:text-brand-amber transition-colors">Layanan</a>
+        <a href="#process" class="text-on-surface hover:text-brand-amber transition-colors">Alur Kerja</a>
+        <a href="#about" class="text-on-surface hover:text-brand-amber transition-colors">Tentang RSA</a>
+      </nav>
+
+      <!-- Action Buttons & Theme Toggle -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn p-2 rounded-lg text-on-surface-variant hover:text-primary dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle Theme">
+          <span class="material-symbols-outlined theme-icon-moon text-xl">dark_mode</span>
+          <span class="material-symbols-outlined theme-icon-sun text-xl text-brand-amber" style="display:none;">light_mode</span>
+        </button>
+
+        <!-- CTA WhatsApp Button -->
+        <a href="#estimator" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-primary dark:bg-brand-amber text-on-primary dark:text-black font-mono text-xs font-bold uppercase tracking-wider rounded shadow hover:bg-brand-navy/90 dark:hover:bg-brand-amber/90 transition-all btn-spring">
+          <span>Mulai Proyek</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+
+        <!-- Mobile Drawer Toggle Button -->
+        <button id="open-menu" class="md:hidden flex items-center gap-1 text-primary dark:text-white p-1.5" aria-label="Open Menu">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+          <span class="font-mono text-xs uppercase font-bold tracking-wider hidden xs:inline">Menu</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MOBILE NAVIGATION DRAWER
+       ========================================================================= -->
+  <div id="nav-drawer" class="fixed inset-0 z-[60] ios-glass transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] flex flex-col justify-between p-6 sm:p-10" aria-hidden="true">
+    
+    <!-- Top Bar inside Drawer -->
+    <div class="flex justify-between items-center hairline-b pb-4">
+      <div class="flex items-center gap-3">
+        <img src="assets/images/logo.png" alt="RSA Logo" class="w-8 h-8 object-contain"/>
+        <span class="font-display font-bold text-lg tracking-tight">PT RIWAN SEJAHTERA ABADI</span>
+      </div>
+      <button id="close-menu" class="p-2 text-on-surface hover:text-brand-amber transition-colors" aria-label="Close Menu">
+        <span class="material-symbols-outlined text-3xl">close</span>
+      </button>
+    </div>
+
+    <!-- Drawer Navigation Links -->
+    <div class="flex flex-col space-y-6 my-auto">
+      <a href="#projects" class="nav-link-item font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-on-surface hover:translate-x-3 hover:text-brand-amber transition-all duration-300">01. Portofolio Proyek</a>
+      <a href="#estimator" class="nav-link-item font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-on-surface hover:translate-x-3 hover:text-brand-amber transition-all duration-300 flex items-center justify-between">
+        <span>02. Kalkulator RAB</span>
+        <span class="font-mono text-xs px-2 py-1 bg-brand-amber text-white dark:text-black rounded">Estimasi Presisi</span>
+      </a>
+      <a href="#services" class="nav-link-item font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-on-surface hover:translate-x-3 hover:text-brand-amber transition-all duration-300">03. Layanan Konstruksi</a>
+      <a href="#process" class="nav-link-item font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-on-surface hover:translate-x-3 hover:text-brand-amber transition-all duration-300">04. Standar & Alur Kerja</a>
+      <a href="#about" class="nav-link-item font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-on-surface hover:translate-x-3 hover:text-brand-amber transition-all duration-300">05. Tentang Kami</a>
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="hairline-t pt-4 flex flex-col gap-3">
+      <a href="https://wa.me/6281288880199?text=Halo%20RSA,%20saya%20ingin%20konsultasi%20proyek%20arsitektur/konstruksi." target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-primary dark:bg-brand-amber text-on-primary dark:text-black font-mono text-xs font-bold uppercase text-center rounded flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-sm">chat</span>
+        <span>WhatsApp Hotline RSA</span>
+      </a>
+      <p class="font-mono text-[10px] text-on-surface-variant text-center">Jakarta & Bali • Precision Architectural Construction</p>
+    </div>
+
+  </div>
+
+  <!-- =========================================================================
+       HERO SECTION (CINEMATIC EDITORIAL)
+       ========================================================================= -->
+  <section class="relative min-h-[92vh] flex flex-col justify-end pt-24 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    
+    <!-- Hero Background Visual -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <div class="w-full h-full bg-cover bg-center transition-transform duration-1000 scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUTOMi6QgedKe493qEysNJhPp3yzL0yliUiRbdf_23a7MvripUgCEnAFB0NjY79bggIVWKiO4K5CdG1ocWCCBB_20cLcFuraaknDhb7xoWGHYnsnrIpzQSXKU0dKco0upFIjtKK80AeZPNmuTNB-bavEyuqsrwPrVxK0Bqy1eGS_bajjW35tkwk1iDor583UXoyE3Hzr4X6z3OidE7m-zv2Q-1bHAuHBFaCfLXwG1nZwzcE5Fx58Bwkw');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto w-full text-white z-10">
+      
+      <!-- Top Badges -->
+      <div class="flex flex-wrap items-center gap-3 mb-6 reveal-on-scroll">
+        <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-brand-amber font-semibold flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-brand-amber"></span>
+          JAKARTA & BALI
+        </span>
+        <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-gray-200">
+          PT RIWAN SEJAHTERA ABADI
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] uppercase max-w-5xl mb-6 reveal-on-scroll delay-100">
+        BUILDING WITH <span class="text-brand-amber">PRECISION.</span>
+      </h1>
+      
+      <p class="font-body text-lg sm:text-2xl text-gray-200 font-light max-w-3xl mb-8 leading-relaxed reveal-on-scroll delay-200">
+        From Drawing to Building. Menyatukan kemewahan konsep arsitektur dengan akurasi pengerjaan fisik tanpa kompromi.
+      </p>
+
+      <!-- Hero Actions & Floating Glass HUD -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end reveal-on-scroll delay-300">
+        
+        <!-- Action Buttons -->
+        <div class="lg:col-span-6 flex flex-col sm:flex-row gap-4">
+          <a href="#estimator" class="px-8 py-4 bg-brand-amber text-black font-mono text-sm font-bold uppercase tracking-wider rounded flex items-center justify-center gap-2 hover:bg-brand-amber/90 transition-all btn-spring shadow-lg shadow-brand-amber/20">
+            <span class="material-symbols-outlined text-lg">calculate</span>
+            <span>Kalkulator RAB Presisi</span>
+          </a>
+          <a href="#projects" class="px-8 py-4 bg-white/15 hover:bg-white/25 text-white backdrop-blur-md border border-white/30 font-mono text-sm font-bold uppercase tracking-wider rounded flex items-center justify-center gap-2 transition-all btn-spring">
+            <span>Lihat Portofolio</span>
+            <span class="material-symbols-outlined text-lg">arrow_downward</span>
+          </a>
+        </div>
+
+        <!-- Floating Glass HUD Specs -->
+        <div class="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div class="ios-glass-hud p-3.5 rounded-lg text-white">
+            <span class="font-mono text-[10px] text-gray-300 uppercase block">STANDAR KERJA</span>
+            <span class="font-display font-bold text-sm text-brand-amber">DED & Struktur ISO</span>
+          </div>
+          <div class="ios-glass-hud p-3.5 rounded-lg text-white">
+            <span class="font-mono text-[10px] text-gray-300 uppercase block">GARANSI RESMI</span>
+            <span class="font-display font-bold text-sm text-white">10 Thn Struktur</span>
+          </div>
+          <div class="ios-glass-hud p-3.5 rounded-lg text-white col-span-2 sm:col-span-1">
+            <span class="font-mono text-[10px] text-gray-300 uppercase block">TRANSPARANSI</span>
+            <span class="font-display font-bold text-sm text-white">100% Realtime RAB</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       TRUST METRICS RIBBON
+       ========================================================================= -->
+  <section class="w-full bg-surface-dim dark:bg-black/40 hairline-t hairline-b py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      
+      <div class="reveal-on-scroll">
+        <span class="font-display text-3xl sm:text-4xl font-extrabold text-primary dark:text-brand-amber block">50+</span>
+        <span class="font-mono text-xs uppercase text-on-surface-variant mt-1 block">Proyek Selesai</span>
+      </div>
+
+      <div class="reveal-on-scroll delay-100">
+        <span class="font-display text-3xl sm:text-4xl font-extrabold text-primary dark:text-brand-amber block">Rp 150M+</span>
+        <span class="font-mono text-xs uppercase text-on-surface-variant mt-1 block">Konstruksi Terkelola</span>
+      </div>
+
+      <div class="reveal-on-scroll delay-200">
+        <span class="font-display text-3xl sm:text-4xl font-extrabold text-primary dark:text-brand-amber block">100%</span>
+        <span class="font-mono text-xs uppercase text-on-surface-variant mt-1 block">On-Time Milestone</span>
+      </div>
+
+      <div class="reveal-on-scroll delay-300">
+        <span class="font-display text-3xl sm:text-4xl font-extrabold text-primary dark:text-brand-amber block">10 Tahun</span>
+        <span class="font-mono text-xs uppercase text-on-surface-variant mt-1 block">Garansi Struktur</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION: SELECTED PROJECTS (EDITORIAL MONOGRAPH GRID)
+       ========================================================================= -->
+  <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between hairline-b pb-6 mb-12 gap-6 reveal-on-scroll">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="font-display text-3xl font-extralight text-brand-amber">01</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-on-surface-variant">PORTOFOLIO TERPILIH</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">KARYA & EKSEKUSI</h2>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs uppercase">
+        <button type="button" class="portfolio-filter-btn px-4 py-2 rounded bg-primary dark:bg-brand-amber text-on-primary dark:text-black font-bold transition-all" data-filter="all">Semua</button>
+        <button type="button" class="portfolio-filter-btn px-4 py-2 rounded bg-transparent text-on-surface-variant hover:text-primary dark:hover:text-white transition-all" data-filter="residential">Residential</button>
+        <button type="button" class="portfolio-filter-btn px-4 py-2 rounded bg-transparent text-on-surface-variant hover:text-primary dark:hover:text-white transition-all" data-filter="villa">Villa & Resort</button>
+        <button type="button" class="portfolio-filter-btn px-4 py-2 rounded bg-transparent text-on-surface-variant hover:text-primary dark:hover:text-white transition-all" data-filter="commercial">Commercial</button>
+        <button type="button" class="portfolio-filter-btn px-4 py-2 rounded bg-transparent text-on-surface-variant hover:text-primary dark:hover:text-white transition-all" data-filter="interior">Interior</button>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Project 1 -->
+      <article class="portfolio-item-card group cursor-pointer reveal-on-scroll" data-category="villa" data-id="1">
+        <div class="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-dim mb-4 img-reveal-container">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDecw6GJZg1KL3b6xjMfSphb5CZBhr2wIl9T4pTTEoJjAX7hn2NJPG8gFr4O6cBc26Xx4YOrqDpHvarFePgxgGdecf0uHVsInzfNFDVqH3t3Kvyao7WiuZgPd86a-NFWkPmp5x1oh3p5SX0eBf1qcaydqqHf2YsSxy30857n0h7JfgkNXHMiQJnWkiddtSFfarjL0lohKVywK9_GrjyZeKcW9Tot1uT6eBnum6C-HNWSB5eEaUpfWh43A" alt="Villa Orama" class="w-full h-full object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <span class="absolute top-4 left-4 font-display font-light text-4xl text-white/80 mix-blend-difference">01</span>
+          <span class="absolute bottom-4 right-4 font-mono text-[10px] uppercase bg-black/60 backdrop-blur text-white px-2.5 py-1 rounded border border-white/20">Lihat Detail &rarr;</span>
+        </div>
+        <h3 class="font-display text-2xl font-bold uppercase tracking-tight group-hover:text-brand-amber transition-colors">Villa Orama</h3>
+        <p class="font-mono text-xs text-on-surface-variant uppercase mt-1">Uluwatu, Bali — 2023 • 480 m²</p>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="portfolio-item-card group cursor-pointer reveal-on-scroll delay-100" data-category="commercial" data-id="2">
+        <div class="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-dim mb-4 img-reveal-container">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCACVkL5OUISCQ9E7shqs9xEpxWsOw8NHl11xGZ3aszoKKcHeCElpNStzQX0hT838ZGSo6KsOdeCaqdRts0somBgkBsA-IirFVL02zIvn8_Abz5JWmNNr5b1bbc7sKhXHJ5QRFCt7sOT4SYpWVSwTI82u19EvZZAONsJ5buWN2sp8D4q6CiejWBg7sruJdDmkkYSKBpD41iS-5F-L9Sc7TZ2roxVS9InyIdyCcOzEF44-ePDOqcqXnE1g" alt="The Monolith Gallery" class="w-full h-full object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <span class="absolute top-4 left-4 font-display font-light text-4xl text-white/80 mix-blend-difference">02</span>
+          <span class="absolute bottom-4 right-4 font-mono text-[10px] uppercase bg-black/60 backdrop-blur text-white px-2.5 py-1 rounded border border-white/20">Lihat Detail &rarr;</span>
+        </div>
+        <h3 class="font-display text-2xl font-bold uppercase tracking-tight group-hover:text-brand-amber transition-colors">The Monolith Gallery</h3>
+        <p class="font-mono text-xs text-on-surface-variant uppercase mt-1">Senopati, Jakarta — 2024 • 650 m²</p>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="portfolio-item-card group cursor-pointer reveal-on-scroll delay-200" data-category="residential" data-id="3">
+        <div class="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-dim mb-4 img-reveal-container">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn-UYfYiqMmL0a__sMwZsZgLm13gnUkfkUBKqvOe1KUONj9yRjzBHQ7J-0TP6Ugrz5Ph9alRr0RAuquIdQ061GVuTSUZFMWaUzf-vSkQpLLt_iGBtHhK7sXeDgirl6gMJlTKrG39kb7Tvmri5M_RkZkMucI-cJDqO4Bm6VOPxIVj-JzEP9mWcWcndocTJEIkr3YN_rQ_a2TdgQ-hqv469zIM23CSxEToRkKj7hGYfdgUfdD1iAEpff_w" alt="Menteng Minimalist Residence" class="w-full h-full object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <span class="absolute top-4 left-4 font-display font-light text-4xl text-white/80 mix-blend-difference">03</span>
+          <span class="absolute bottom-4 right-4 font-mono text-[10px] uppercase bg-black/60 backdrop-blur text-white px-2.5 py-1 rounded border border-white/20">Lihat Detail &rarr;</span>
+        </div>
+        <h3 class="font-display text-2xl font-bold uppercase tracking-tight group-hover:text-brand-amber transition-colors">Menteng Residence</h3>
+        <p class="font-mono text-xs text-on-surface-variant uppercase mt-1">Menteng, Jakarta — 2023 • 520 m²</p>
+      </article>
+
+      <!-- Project 4 -->
+      <article class="portfolio-item-card group cursor-pointer reveal-on-scroll" data-category="villa" data-id="4">
+        <div class="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-dim mb-4 img-reveal-container">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv1TvHKd3DqH13wIjhagz1SV7_06m06oVxKYPh3Vx33AhDSaCBd3YUlQwfKSlqYyyU8w_-gl58FrJfHK523XiCDU7QnjKXFBoTxTEkghy5uX7wvWeoMV5MHt2qD6gESqsYRF2hDAKO1mioiIJ1-ITf9BYHTCspfpNsVXYqb2_BhisQNc2fxRQFYRBgIBxmyNXplMIECy4oiQ3fpXpASn7atP4Z8mOGsFV8UzyAt7YF8L_jvt3vnEfi7w" alt="Canggu Tropical Sanctuary" class="w-full h-full object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <span class="absolute top-4 left-4 font-display font-light text-4xl text-white/80 mix-blend-difference">04</span>
+          <span class="absolute bottom-4 right-4 font-mono text-[10px] uppercase bg-black/60 backdrop-blur text-white px-2.5 py-1 rounded border border-white/20">Lihat Detail &rarr;</span>
+        </div>
+        <h3 class="font-display text-2xl font-bold uppercase tracking-tight group-hover:text-brand-amber transition-colors">Canggu Sanctuary</h3>
+        <p class="font-mono text-xs text-on-surface-variant uppercase mt-1">Canggu, Bali — 2022 • 720 m²</p>
+      </article>
+
+      <!-- Project 5 -->
+      <article class="portfolio-item-card group cursor-pointer reveal-on-scroll delay-100" data-category="commercial" data-id="5">
+        <div class="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-dim mb-4 img-reveal-container">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcgC8nxAcDkYX-tAMdRbvfrAl58m2jZCW2NIm0CTggo0ECzoS0O6KRJQLx4RU9mBz4VJmQfRaaXMCiPeT4SpJSE0DEZrQ0hgiH6dhiS7wOJf-Y4SqKrj8_xfLiU6LI0YCzFSjSPjj4wGcfz85tGq9Uykfd7f5D7-Qm9nElcOxb1R1hxvhBwsUvnvI9FxHxGydZB8VP0OMLcPMgueHnq1PDuUKX1t5KKv1L93_qa2wEcSi2hmyeUFcF5w" alt="The Brutalist Atelier" class="w-full h-full object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <span class="absolute top-4 left-4 font-display font-light text-4xl text-white/80 mix-blend-difference">05</span>
+          <span class="absolute bottom-4 right-4 font-mono text-[10px] uppercase bg-black/60 backdrop-blur text-white px-2.5 py-1 rounded border border-white/20">Lihat Detail &rarr;</span>
+        </div>
+        <h3 class="font-display text-2xl font-bold uppercase tracking-tight group-hover:text-brand-amber transition-colors">The Brutalist Atelier</h3>
+        <p class="font-mono text-xs text-on-surface-variant uppercase mt-1">PIK, Jakarta — 2024 • 430 m²</p>
+      </article>
+
+      <!-- Project 6 -->
+      <article class="portfolio-item-card group cursor-pointer reveal-on-scroll delay-200" data-category="interior" data-id="6">
+        <div class="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-dim mb-4 img-reveal-container">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUTOMi6QgedKe493qEysNJhPp3yzL0yliUiRbdf_23a7MvripUgCEnAFB0NjY79bggIVWKiO4K5CdG1ocWCCBB_20cLcFuraaknDhb7xoWGHYnsnrIpzQSXKU0dKco0upFIjtKK80AeZPNmuTNB-bavEyuqsrwPrVxK0Bqy1eGS_bajjW35tkwk1iDor583UXoyE3Hzr4X6z3OidE7m-zv2Q-1bHAuHBFaCfLXwG1nZwzcE5Fx58Bwkw" alt="Zenith Penthouse Lounge" class="w-full h-full object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <span class="absolute top-4 left-4 font-display font-light text-4xl text-white/80 mix-blend-difference">06</span>
+          <span class="absolute bottom-4 right-4 font-mono text-[10px] uppercase bg-black/60 backdrop-blur text-white px-2.5 py-1 rounded border border-white/20">Lihat Detail &rarr;</span>
+        </div>
+        <h3 class="font-display text-2xl font-bold uppercase tracking-tight group-hover:text-brand-amber transition-colors">Zenith Penthouse Lounge</h3>
+        <p class="font-mono text-xs text-on-surface-variant uppercase mt-1">SCBD, Jakarta — 2023 • 340 m²</p>
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       SECTION: INTERACTIVE ESTIMATOR (KALKULATOR RAB PRESISI)
+       ========================================================================= -->
+  <section id="estimator" class="py-20 bg-surface-dim dark:bg-black/50 hairline-t hairline-b relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Column: Estimator Narrative -->
+        <div class="lg:col-span-5 reveal-on-scroll">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="font-display text-3xl font-extralight text-brand-amber">02</span>
+            <span class="font-mono text-xs uppercase tracking-widest text-on-surface-variant">TRANSPARANSI BIAYA</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight mb-6">
+            Kalkulator Estimasi Biaya Konstruksi
+          </h2>
+          <p class="font-body text-base text-on-surface-variant leading-relaxed mb-6">
+            Arsitektur yang baik berakar pada transparansi. Gunakan kalkulator presisi kami untuk menghitung baseline Rencana Anggaran Biaya (RAB) proyek Anda berdasarkan standar material dan rate aktual RSA.
+          </p>
+
+          <div class="space-y-4 font-mono text-xs text-on-surface-variant hairline-t pt-6">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-brand-amber">verified</span>
+              <span>Harga mencakup material SNI & jasa tukang tersertifikasi.</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-brand-amber">tune</span>
+              <span>Penyesuaian spesifikasi dapat dikonsultasikan langsung via tim DED.</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-brand-amber">shield</span>
+              <span>Termasuk garansi pemeliharaan & struktur resmi RSA.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Controls Card -->
+        <div class="lg:col-span-7 reveal-on-scroll delay-100">
+          <div class="ios-glass-card p-6 sm:p-8 rounded-xl hairline-all shadow-xl">
+            
+            <form id="estimator-form" class="space-y-6">
+              
+              <!-- 1. Building Area Slider -->
+              <div>
+                <div class="flex justify-between items-baseline mb-3">
+                  <label for="area-slider" class="font-mono text-xs uppercase tracking-wider font-semibold text-primary dark:text-white">
+                    Luas Bangunan (m²)
+                  </label>
+                  <span id="area-display" class="font-display text-2xl font-bold text-brand-amber">250 m²</span>
+                </div>
+                <input type="range" id="area-slider" min="50" max="2000" step="10" value="250" class="w-full"/>
+                <div class="flex justify-between font-mono text-[10px] text-on-surface-variant mt-1">
+                  <span>50 m²</span>
+                  <span>1.000 m²</span>
+                  <span>2.000 m²</span>
+                </div>
+              </div>
+
+              <!-- 2. Project Type (Segmented iOS Controls) -->
+              <div>
+                <label class="font-mono text-xs uppercase tracking-wider font-semibold text-primary dark:text-white block mb-2">
+                  Tipe Proyek
+                </label>
+                <div class="grid grid-cols-2 gap-3">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="proj_type" value="new" checked class="peer sr-only"/>
+                    <div class="p-3.5 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
+                      <span class="font-mono text-xs uppercase font-bold block">Bangun Baru</span>
+                      <span class="text-[10px] opacity-70 block mt-0.5">Design & Turnkey Build</span>
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="proj_type" value="reno" class="peer sr-only"/>
+                    <div class="p-3.5 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
+                      <span class="font-mono text-xs uppercase font-bold block">Renovasi Total</span>
+                      <span class="text-[10px] opacity-70 block mt-0.5">Overhaul & Finishing</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- 3. Finishing Quality Tier -->
+              <div>
+                <label class="font-mono text-xs uppercase tracking-wider font-semibold text-primary dark:text-white block mb-2">
+                  Kualitas Finishing & Material
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="finish_level" value="standard" class="peer sr-only"/>
+                    <div class="p-3 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
+                      <span class="font-mono text-xs uppercase font-bold block">Standard</span>
+                      <span class="text-[9px] opacity-70 block">Editorial Clean</span>
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="finish_level" value="premium" checked class="peer sr-only"/>
+                    <div class="p-3 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
+                      <span class="font-mono text-xs uppercase font-bold block">Premium</span>
+                      <span class="text-[9px] opacity-70 block">Architectural Grade</span>
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="finish_level" value="luxury" class="peer sr-only"/>
+                    <div class="p-3 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
+                      <span class="font-mono text-xs uppercase font-bold block">Luxury</span>
+                      <span class="text-[9px] opacity-70 block">Bespoke Brutalist</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- 4. Structural Floors Multiplier -->
+              <div>
+                <label class="font-mono text-xs uppercase tracking-wider font-semibold text-primary dark:text-white block mb-2">
+                  Jumlah Lantai Struktur
+                </label>
+                <div class="grid grid-cols-3 gap-3">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="floors" value="1" class="peer sr-only"/>
+                    <div class="p-2.5 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
+                      <span class="font-mono text-xs font-bold">1 Lantai</span>
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="floors" value="2" checked class="peer sr-only"/>
+                    <div class="p-2.5 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
+                      <span class="font-mono text-xs font-bold">2 Lantai</span>
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="floors" value="3" class="peer sr-only"/>
+                    <div class="p-2.5 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
+                      <span class="font-mono text-xs font-bold">3+ Lantai</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+            </form>
+
+            <!-- Live Calculation Output Banner -->
+            <div class="mt-8 p-6 bg-surface-dim dark:bg-black/80 rounded-xl border-l-4 border-brand-amber">
+              <span class="font-mono text-[10px] uppercase text-on-surface-variant tracking-wider block mb-1">Estimasi Total Biaya Konstruksi (RAB)</span>
+              <div id="estimate-result" class="font-display text-2xl sm:text-3xl font-extrabold text-primary dark:text-white tracking-tight transition-all duration-200">
+                Rp 2.200.000.000 - Rp 2.640.000.000
+              </div>
+
+              <!-- Cost Breakdown Grid -->
+              <div class="grid grid-cols-3 gap-2 mt-4 pt-4 hairline-t text-center sm:text-left">
+                <div>
+                  <span class="font-mono text-[9px] uppercase text-on-surface-variant block">Struktur (38%)</span>
+                  <span id="breakdown-struktur" class="font-mono text-xs font-semibold text-primary dark:text-gray-200 block">Rp 836 Jt</span>
+                </div>
+                <div>
+                  <span class="font-mono text-[9px] uppercase text-on-surface-variant block">Finishing (42%)</span>
+                  <span id="breakdown-finishing" class="font-mono text-xs font-semibold text-primary dark:text-gray-200 block">Rp 924 Jt</span>
+                </div>
+                <div>
+                  <span class="font-mono text-[9px] uppercase text-on-surface-variant block">MEP & Sanitasi (20%)</span>
+                  <span id="breakdown-mep" class="font-mono text-xs font-semibold text-primary dark:text-gray-200 block">Rp 440 Jt</span>
+                </div>
+              </div>
+
+              <!-- Direct WhatsApp Consultation CTA -->
+              <div class="mt-6">
+                <a id="wa-consult-btn" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-4 px-6 bg-brand-amber hover:bg-brand-amber/90 text-black font-mono text-xs uppercase font-extrabold tracking-wider rounded-lg flex items-center justify-center gap-2 transition-all btn-spring shadow-lg shadow-brand-amber/20">
+                  <span class="material-symbols-outlined text-base">chat</span>
+                  <span>Konsultasikan Rincian RAB Ini via WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION: SERVICES & CAPABILITIES
+       ========================================================================= -->
+  <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    
+    <div class="flex items-center gap-2 mb-3 reveal-on-scroll">
+      <span class="font-display text-3xl font-extralight text-brand-amber">03</span>
+      <span class="font-mono text-xs uppercase tracking-widest text-on-surface-variant">KAPABILITAS & LAYANAN</span>
+    </div>
+    <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase tracking-tight mb-12 reveal-on-scroll">
+      Layanan Konstruksi & Arsitektur
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Service 1 -->
+      <div class="p-6 rounded-xl ios-glass-card hairline-all reveal-on-scroll hover:border-brand-amber transition-all group">
+        <div class="w-12 h-12 rounded-lg bg-brand-navy/10 dark:bg-brand-amber/10 text-primary dark:text-brand-amber flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-2xl">foundation</span>
+        </div>
+        <h3 class="font-display text-xl font-bold uppercase tracking-tight mb-3">Design & Build</h3>
+        <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+          Pengerjaan menyeluruh dari nol hingga serah terima kunci. Mengeliminasi gesekan antara desainer dan kontraktor lapangan.
+        </p>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="p-6 rounded-xl ios-glass-card hairline-all reveal-on-scroll delay-100 hover:border-brand-amber transition-all group">
+        <div class="w-12 h-12 rounded-lg bg-brand-navy/10 dark:bg-brand-amber/10 text-primary dark:text-brand-amber flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-2xl">architecture</span>
+        </div>
+        <h3 class="font-display text-xl font-bold uppercase tracking-tight mb-3">Perencanaan DED</h3>
+        <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+          Gambar kerja detail arsitektur, perhitungan struktur tahan gempa, dan instalasi mekanikal/elektrikal presisi tinggi.
+        </p>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="p-6 rounded-xl ios-glass-card hairline-all reveal-on-scroll delay-200 hover:border-brand-amber transition-all group">
+        <div class="w-12 h-12 rounded-lg bg-brand-navy/10 dark:bg-brand-amber/10 text-primary dark:text-brand-amber flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-2xl">chair</span>
+        </div>
+        <h3 class="font-display text-xl font-bold uppercase tracking-tight mb-3">Interior Millwork</h3>
+        <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+          Pembuatan kabinet custom, fit-out kayu solid, paneling akustik, dan pencahayaan arsitektural berstandar hotel mewah.
+        </p>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="p-6 rounded-xl ios-glass-card hairline-all reveal-on-scroll delay-300 hover:border-brand-amber transition-all group">
+        <div class="w-12 h-12 rounded-lg bg-brand-navy/10 dark:bg-brand-amber/10 text-primary dark:text-brand-amber flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-2xl">verified_user</span>
+        </div>
+        <h3 class="font-display text-xl font-bold uppercase tracking-tight mb-3">Pengawasan QC</h3>
+        <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+          Inspeksi berkala kualitas pembesian beton, uji slump, water-proofing test, dan pelaporan progress mingguan transparan.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       SECTION: THE PRECISION PROCESS (4 TAHAPAN KERJA)
+       ========================================================================= -->
+  <section id="process" class="py-20 bg-surface-dim dark:bg-black/50 hairline-t hairline-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex items-center gap-2 mb-3 reveal-on-scroll">
+        <span class="font-display text-3xl font-extralight text-brand-amber">04</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-on-surface-variant">STANDAR PELAKSANAAN</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase tracking-tight mb-12 reveal-on-scroll">
+        Alur Kerja Konstruksi Presisi
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        
+        <div class="p-6 bg-surface dark:bg-slate-900 rounded-xl hairline-all reveal-on-scroll">
+          <span class="font-display text-4xl font-extralight text-brand-amber block mb-4">01</span>
+          <h3 class="font-display text-lg font-bold uppercase mb-2">Konsultasi & Survei</h3>
+          <p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Analisis kontur tanah, orientasi matahari, regulasi tata kota (GSB/KDB), dan pemetaan kebutuhan fungsional pemilik proyek.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface dark:bg-slate-900 rounded-xl hairline-all reveal-on-scroll delay-100">
+          <span class="font-display text-4xl font-extralight text-brand-amber block mb-4">02</span>
+          <h3 class="font-display text-lg font-bold uppercase mb-2">DED & Finalisasi RAB</h3>
+          <p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Pembuatan gambar kerja detail, simulasi 3D render fotorealistik, serta breakdown RAB fixed cost tanpa biaya tersembunyi.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface dark:bg-slate-900 rounded-xl hairline-all reveal-on-scroll delay-200">
+          <span class="font-display text-4xl font-extralight text-brand-amber block mb-4">03</span>
+          <h3 class="font-display text-lg font-bold uppercase mb-2">Eksekusi Struktur</h3>
+          <p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Pekerjaan sipil bertahap dengan kontrol toleransi ketat, pengujian laboratorium mutu beton, dan dokumentasi berkala.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface dark:bg-slate-900 rounded-xl hairline-all reveal-on-scroll delay-300">
+          <span class="font-display text-4xl font-extralight text-brand-amber block mb-4">04</span>
+          <h3 class="font-display text-lg font-bold uppercase mb-2">Handover & Garansi</h3>
+          <p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Pemeriksaan checklist akhir (joint inspection), serah terima kunci resmi, serta penerbitan sertifikat garansi struktur 10 tahun.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION: ABOUT RSA & PHILOSOPHY
+       ========================================================================= -->
+  <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Brand Logo Card with Glass Morphism -->
+      <div class="lg:col-span-5 reveal-on-scroll">
+        <div class="relative p-8 rounded-2xl ios-glass hairline-all glow-amber text-center flex flex-col items-center justify-center">
+          <div class="w-36 h-36 rounded-2xl p-4 bg-white dark:bg-slate-900 shadow-2xl border border-brand-amber/30 flex items-center justify-center mb-6">
+            <img src="assets/images/logo.png" alt="PT Riwan Sejahtera Abadi" class="w-full h-full object-contain"/>
+          </div>
+          <h3 class="font-display text-2xl font-extrabold tracking-tight text-primary dark:text-white">PT RIWAN SEJAHTERA ABADI</h3>
+          <p class="font-mono text-xs uppercase tracking-widest text-brand-amber font-semibold mt-1">Architecture • Engineering • Construction</p>
+          <div class="flex items-center gap-4 mt-6 pt-6 hairline-t w-full justify-center font-mono text-xs text-on-surface-variant">
+            <span>📍 Jakarta Office</span>
+            <span>•</span>
+            <span>📍 Bali Office</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story & Integrity -->
+      <div class="lg:col-span-7 reveal-on-scroll delay-100">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="font-display text-3xl font-extralight text-brand-amber">05</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-on-surface-variant">FILOSOFI & INTEGRITAS</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase tracking-tight mb-6">
+          Jembatan Antara Konsep & Realitas Bangunan
+        </h2>
+        <p class="font-body text-base text-on-surface-variant leading-relaxed mb-6">
+          Didirikan atas keyakinan bahwa keindahan arsitektur tidak akan terwujud tanpa presisi struktural di lapangan, <strong>PT RIWAN SEJAHTERA ABADI (RSA)</strong> hadir memberikan standar baru dalam industri konstruksi Indonesia.
+        </p>
+        <p class="font-body text-base text-on-surface-variant leading-relaxed mb-8">
+          Kami memadukan disiplin teknik sipil ketat dengan kepekaan estetika modern, memastikan setiap garis gambar kerja direalisasikan dengan keakuratan milimeter, jadwal tepat waktu, dan anggaran transparan.
+        </p>
+
+        <a href="https://wa.me/6281288880199?text=Halo%20RSA,%20saya%20ingin%20jadwalkan%20konsultasi%20langsung%20dengan%20tim%20arsitek/insinyur%20RSA." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-primary dark:bg-brand-amber text-on-primary dark:text-black font-mono text-xs uppercase font-extrabold tracking-wider rounded-lg transition-all btn-spring shadow-lg">
+          <span class="material-symbols-outlined text-base">calendar_month</span>
+          <span>Jadwalkan Konsultasi Bersama Tim RSA</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PROJECT DETAIL LIGHTBOX MODAL
+       ========================================================================= -->
+  <div id="project-modal" class="fixed inset-0 z-[70] bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="relative w-full max-w-4xl bg-surface dark:bg-slate-900 rounded-2xl hairline-all shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-4 sm:p-6 hairline-b bg-surface-dim dark:bg-black/40">
+        <div>
+          <span id="modal-category" class="font-mono text-[10px] uppercase tracking-widest text-brand-amber font-semibold">Residential</span>
+          <h3 id="modal-title" class="font-display text-xl sm:text-2xl font-extrabold uppercase text-primary dark:text-white">Villa Orama</h3>
+        </div>
+        <button id="close-project-modal" class="p-2 text-on-surface hover:text-brand-amber transition-colors" aria-label="Close Project Modal">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-4 sm:p-6 overflow-y-auto space-y-6">
+        
+        <!-- Image Preview -->
+        <div class="w-full aspect-[16/9] rounded-lg overflow-hidden bg-black">
+          <img id="modal-img" src="" alt="Project Preview" class="w-full h-full object-cover"/>
+        </div>
+
+        <!-- Specs Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-lg bg-surface-dim dark:bg-black/30 font-mono text-xs">
+          <div>
+            <span class="text-on-surface-variant text-[10px] block">LOKASI</span>
+            <span id="modal-location" class="font-bold text-primary dark:text-white">-</span>
+          </div>
+          <div>
+            <span class="text-on-surface-variant text-[10px] block">TAHUN / LUAS</span>
+            <span id="modal-year" class="font-bold text-primary dark:text-white">-</span> • <span id="modal-area" class="font-bold text-primary dark:text-white">-</span>
+          </div>
+          <div>
+            <span class="text-on-surface-variant text-[10px] block">LANTAI</span>
+            <span id="modal-floors" class="font-bold text-primary dark:text-white">-</span>
+          </div>
+          <div>
+            <span class="text-on-surface-variant text-[10px] block">LINGKUP KERJA</span>
+            <span id="modal-scope" class="font-bold text-primary dark:text-white">-</span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <h4 class="font-mono text-xs uppercase tracking-wider text-primary dark:text-white font-bold mb-2">Konsep & Eksekusi</h4>
+          <p id="modal-description" class="font-body text-sm text-on-surface-variant leading-relaxed">-</p>
+        </div>
+
+        <!-- Materials -->
+        <div>
+          <h4 class="font-mono text-xs uppercase tracking-wider text-primary dark:text-white font-bold mb-2">Material Dominan</h4>
+          <p id="modal-materials" class="font-mono text-xs text-on-surface-variant leading-relaxed">-</p>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 sm:p-6 hairline-t bg-surface-dim dark:bg-black/40 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <span class="font-mono text-xs text-on-surface-variant hidden sm:block">PT RIWAN SEJAHTERA ABADI</span>
+        <a id="modal-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3 bg-brand-amber text-black font-mono text-xs uppercase font-extrabold rounded flex items-center justify-center gap-2 hover:bg-brand-amber/90 transition-all">
+          <span class="material-symbols-outlined text-sm">chat</span>
+          <span>Konsultasi Proyek Serupa via WhatsApp</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FLOATING IOS BOTTOM DOCK (MOBILE ONLY)
+       ========================================================================= -->
+  <nav class="fixed bottom-0 left-0 w-full z-50 md:hidden ios-glass hairline-t shadow-2xl flex items-center divide-x divide-outline-variant">
+    <a href="https://wa.me/6281288880199?text=Halo%20RSA,%20saya%20ingin%20konsultasi%20proyek%20konstruksi." target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 px-2 flex flex-col items-center justify-center text-primary dark:text-white active:bg-black/5 dark:active:bg-white/5 transition-colors">
+      <span class="material-symbols-outlined text-xl mb-0.5 text-brand-amber">chat</span>
+      <span class="font-mono text-[9px] uppercase font-bold tracking-wider">WhatsApp RSA</span>
+    </a>
+    <a href="#estimator" class="flex-1 py-3.5 px-2 flex flex-col items-center justify-center bg-primary dark:bg-brand-amber text-white dark:text-black active:opacity-90 transition-opacity">
+      <span class="material-symbols-outlined text-xl mb-0.5">calculate</span>
+      <span class="font-mono text-[9px] uppercase font-bold tracking-wider">Kalkulator RAB</span>
+    </a>
+  </nav>
+
+  <!-- =========================================================================
+       FOOTER (WITH MANDATORY ZANDEV WATERMARK LINK)
+       ========================================================================= -->
+  <footer class="w-full bg-surface-dim dark:bg-black hairline-t py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 hairline-b">
+        
+        <!-- Brand Info -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg p-1 bg-white dark:bg-slate-900 border border-brand-amber/30 flex items-center justify-center">
+              <img src="assets/images/logo.png" alt="RSA Logo" class="w-full h-full object-contain"/>
+            </div>
+            <div>
+              <span class="font-display text-xl font-extrabold tracking-tight text-primary dark:text-white block">PT RIWAN SEJAHTERA ABADI</span>
+              <span class="font-mono text-[9px] uppercase tracking-widest text-brand-amber font-semibold block">Architecture & Construction Firm</span>
+            </div>
+          </div>
+          <p class="font-body text-sm text-on-surface-variant max-w-sm">
+            Mewujudkan rancang bangun berkelas dengan integritas teknik tinggi, transparansi biaya terukur, dan garansi mutu jangka panjang.
+          </p>
+        </div>
+
+        <!-- Hubs & Offices -->
+        <div class="md:col-span-4 space-y-3 font-mono text-xs text-on-surface-variant">
+          <span class="text-primary dark:text-white font-bold uppercase tracking-wider block mb-2">Kantor Operasional</span>
+          <div>
+            <strong class="text-on-surface dark:text-gray-200 block">Jakarta Hub:</strong>
+            <span>Jl. Suryo No. 28, Senopati, Kebayoran Baru, Jakarta Selatan</span>
+          </div>
+          <div class="pt-2">
+            <strong class="text-on-surface dark:text-gray-200 block">Bali Hub:</strong>
+            <span>Jl. Sunset Road No. 88, Seminyak, Kuta, Badung, Bali</span>
+          </div>
+        </div>
+
+        <!-- Contact & Direct Links -->
+        <div class="md:col-span-3 space-y-3 font-mono text-xs text-on-surface-variant">
+          <span class="text-primary dark:text-white font-bold uppercase tracking-wider block mb-2">Kontak Resmi</span>
+          <p>Email: <a href="mailto:info@riwan.co.id" class="text-primary dark:text-white hover:text-brand-amber">info@riwan.co.id</a></p>
+          <p>Hotline: <a href="https://wa.me/6281288880199" class="text-primary dark:text-white hover:text-brand-amber">+62 812-8888-0199</a></p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="#" class="p-2 rounded bg-surface dark:bg-slate-800 text-on-surface hover:text-brand-amber transition-colors" aria-label="Instagram">
+              <span class="material-symbols-outlined text-base">photo_camera</span>
+            </a>
+            <a href="#" class="p-2 rounded bg-surface dark:bg-slate-800 text-on-surface hover:text-brand-amber transition-colors" aria-label="LinkedIn">
+              <span class="material-symbols-outlined text-base">work</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright & Clickable Zandev Watermark -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-on-surface-variant">
+        <p>© 2024 PT RIWAN SEJAHTERA ABADI (RSA). All rights reserved.</p>
+        
+        <!-- Mandatory Clickable Zandev Watermark Footer -->
+        <div class="flex items-center gap-1.5 text-xs">
+          <span>Crafted with precision by</span>
+          <a href="https://zandev.id" target="_blank" rel="noopener noreferrer" class="font-bold text-primary dark:text-white hover:text-brand-amber dark:hover:text-brand-amber underline transition-colors">
+            Zandev
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
