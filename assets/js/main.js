@@ -215,7 +215,7 @@ Saya ingin konsultasi proyek konstruksi berdasarkan simulasi estimasi kalkulator
 
 Mohon informasi jadwal temu konsultasi desain arsitektur & survei lokasi. Terima kasih!`;
       
-      const phone = '6281288880199';
+      const phone = '6281357449486';
       waConsultBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(messageText)}`;
     }
   }
@@ -455,7 +455,7 @@ function openProjectModal(project) {
 
   if (modalWaBtn) {
     const waText = `Halo Tim RSA, saya sangat tertarik dengan portofolio *${project.title}* (${project.location}). Mohon info konsultasi arsitektur & estimasi bangun untuk proyek serupa.`;
-    modalWaBtn.href = `https://wa.me/6281288880199?text=${encodeURIComponent(waText)}`;
+    modalWaBtn.href = `https://wa.me/6281357449486?text=${encodeURIComponent(waText)}`;
   }
 
   modal.classList.remove('hidden');
