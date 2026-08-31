@@ -426,19 +426,43 @@
             
             <form id="estimator-form" class="space-y-6">
               
-              <!-- 1. Building Area Slider -->
+              <!-- 1. Building Area (Slider + Manual Number Input + Presets) -->
               <div>
-                <div class="flex justify-between items-baseline mb-3">
-                  <label for="area-slider" class="font-mono text-xs uppercase tracking-wider font-semibold text-primary dark:text-white">
-                    Luas Bangunan (m²)
+                <div class="flex justify-between items-center mb-3">
+                  <label for="area-input" class="font-mono text-xs uppercase tracking-wider font-semibold text-primary dark:text-white flex items-center gap-1.5">
+                    <span>Luas Bangunan</span>
+                    <span class="text-[10px] text-brand-amber font-normal hidden sm:inline">• Ketik atau Geser Slider</span>
                   </label>
-                  <span id="area-display" class="font-display text-2xl font-bold text-brand-amber">250 m²</span>
+                  
+                  <!-- Manual Number Input Box -->
+                  <div class="flex items-center gap-1 bg-surface-dim dark:bg-black/60 px-3 py-1 rounded-lg border border-outline-variant focus-within:border-brand-amber transition-all">
+                    <input 
+                      type="number" 
+                      id="area-input" 
+                      min="30" 
+                      max="5000" 
+                      step="1" 
+                      value="250" 
+                      class="w-16 sm:w-20 bg-transparent text-right font-display text-xl font-bold text-brand-amber focus:outline-none border-none p-0"
+                      placeholder="250"
+                    />
+                    <span class="font-mono text-xs text-on-surface-variant font-bold">m²</span>
+                  </div>
                 </div>
-                <input type="range" id="area-slider" min="50" max="2000" step="10" value="250" class="w-full"/>
-                <div class="flex justify-between font-mono text-[10px] text-on-surface-variant mt-1">
-                  <span>50 m²</span>
-                  <span>1.000 m²</span>
-                  <span>2.000 m²</span>
+
+                <!-- Range Slider -->
+                <input type="range" id="area-slider" min="50" max="2000" step="5" value="250" class="w-full cursor-pointer"/>
+                
+                <!-- Presets & Min-Max Labels -->
+                <div class="flex flex-wrap items-center justify-between gap-1.5 mt-2">
+                  <div class="flex items-center gap-1.5">
+                    <span class="font-mono text-[10px] text-on-surface-variant">Preset:</span>
+                    <button type="button" class="area-preset-btn px-2 py-0.5 rounded bg-surface-dim dark:bg-slate-800 hover:bg-brand-amber hover:text-black text-on-surface-variant dark:text-gray-300 font-mono text-[10px] font-semibold border border-outline-variant transition-colors" data-area="100">100 m²</button>
+                    <button type="button" class="area-preset-btn px-2 py-0.5 rounded bg-surface-dim dark:bg-slate-800 hover:bg-brand-amber hover:text-black text-on-surface-variant dark:text-gray-300 font-mono text-[10px] font-semibold border border-outline-variant transition-colors" data-area="250">250 m²</button>
+                    <button type="button" class="area-preset-btn px-2 py-0.5 rounded bg-surface-dim dark:bg-slate-800 hover:bg-brand-amber hover:text-black text-on-surface-variant dark:text-gray-300 font-mono text-[10px] font-semibold border border-outline-variant transition-colors" data-area="500">500 m²</button>
+                    <button type="button" class="area-preset-btn px-2 py-0.5 rounded bg-surface-dim dark:bg-slate-800 hover:bg-brand-amber hover:text-black text-on-surface-variant dark:text-gray-300 font-mono text-[10px] font-semibold border border-outline-variant transition-colors" data-area="1000">1.000 m²</button>
+                  </div>
+                  <span class="font-mono text-[10px] text-on-surface-variant hidden sm:inline">Maks 2.000 m²</span>
                 </div>
               </div>
 
@@ -890,6 +914,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/main.js?v=2.5"></script>
+  <script src="assets/js/main.js?v=2.6"></script>
 </body>
 </html>

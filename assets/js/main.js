@@ -107,7 +107,9 @@ function initEstimator() {
   if (!form) return;
 
   const areaSlider = document.getElementById('area-slider');
+  const areaInput = document.getElementById('area-input');
   const areaDisplay = document.getElementById('area-display');
+  const presetButtons = document.querySelectorAll('.area-preset-btn');
   const estimateResult = document.getElementById('estimate-result');
   const breakdownStruktur = document.getElementById('breakdown-struktur');
   const breakdownFinishing = document.getElementById('breakdown-finishing');
@@ -131,6 +133,7 @@ function initEstimator() {
   };
 
   const formatRupiah = (number) => {
+    if (isNaN(number) || number === null || number === undefined) return 'Rp 0';
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',
@@ -139,12 +142,19 @@ function initEstimator() {
     }).format(number);
   };
 
-  function updateEstimate() {
+  function getAreaValue() {
     let area = 250;
-    if (areaSlider && areaSlider.value) {
+    if (areaInput && areaInput.value) {
+      area = parseInt(areaInput.value, 10);
+    } else if (areaSlider && areaSlider.value) {
       area = parseInt(areaSlider.value, 10);
-      if (isNaN(area) || area < 50) area = 250;
     }
+    if (isNaN(area) || area < 20) area = 250;
+    return area;
+  }
+
+  function updateEstimate() {
+    const area = getAreaValue();
 
     const projTypeInput = document.querySelector('input[name="proj_type"]:checked');
     const finishLevelInput = document.querySelector('input[name="finish_level"]:checked');
@@ -210,10 +220,51 @@ Mohon informasi jadwal temu konsultasi desain arsitektur & survei lokasi. Terima
     }
   }
 
+  // Two-way sync: Slider -> Input
   if (areaSlider) {
-    areaSlider.addEventListener('input', updateEstimate);
-    areaSlider.addEventListener('change', updateEstimate);
+    areaSlider.addEventListener('input', () => {
+      if (areaInput) areaInput.value = areaSlider.value;
+      updateEstimate();
+    });
+    areaSlider.addEventListener('change', () => {
+      if (areaInput) areaInput.value = areaSlider.value;
+      updateEstimate();
+    });
   }
+
+  // Two-way sync: Input -> Slider
+  if (areaInput) {
+    areaInput.addEventListener('input', () => {
+      let val = parseInt(areaInput.value, 10);
+      if (!isNaN(val) && areaSlider) {
+        areaSlider.value = Math.min(2000, Math.max(50, val));
+      }
+      updateEstimate();
+    });
+    areaInput.addEventListener('change', () => {
+      let val = parseInt(areaInput.value, 10);
+      if (isNaN(val) || val < 20) {
+        val = 50;
+        areaInput.value = val;
+      }
+      if (areaSlider) {
+        areaSlider.value = Math.min(2000, Math.max(50, val));
+      }
+      updateEstimate();
+    });
+  }
+
+  // Preset buttons
+  presetButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const presetArea = parseInt(btn.getAttribute('data-area'), 10);
+      if (!isNaN(presetArea)) {
+        if (areaSlider) areaSlider.value = Math.min(2000, Math.max(50, presetArea));
+        if (areaInput) areaInput.value = presetArea;
+        updateEstimate();
+      }
+    });
+  });
 
   if (form) {
     form.querySelectorAll('input[type="radio"]').forEach(input => {
