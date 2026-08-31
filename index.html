@@ -470,7 +470,14 @@
                 <label class="font-mono text-xs uppercase tracking-wider font-semibold text-primary dark:text-white block mb-2">
                   Kualitas Finishing & Material
                 </label>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="finish_level" value="basic" class="peer sr-only"/>
+                    <div class="p-3 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
+                      <span class="font-mono text-xs uppercase font-bold block">Ekonomis</span>
+                      <span class="text-[9px] opacity-70 block">Smart Budget</span>
+                    </div>
+                  </label>
                   <label class="cursor-pointer">
                     <input type="radio" name="finish_level" value="standard" class="peer sr-only"/>
                     <div class="p-3 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
@@ -482,14 +489,14 @@
                     <input type="radio" name="finish_level" value="premium" checked class="peer sr-only"/>
                     <div class="p-3 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
                       <span class="font-mono text-xs uppercase font-bold block">Premium</span>
-                      <span class="text-[9px] opacity-70 block">Architectural Grade</span>
+                      <span class="text-[9px] opacity-70 block">Architectural</span>
                     </div>
                   </label>
                   <label class="cursor-pointer">
                     <input type="radio" name="finish_level" value="luxury" class="peer sr-only"/>
                     <div class="p-3 rounded-lg border border-outline-variant peer-checked:border-brand-amber peer-checked:bg-brand-navy peer-checked:text-white dark:peer-checked:bg-brand-amber dark:peer-checked:text-black text-center transition-all">
                       <span class="font-mono text-xs uppercase font-bold block">Luxury</span>
-                      <span class="text-[9px] opacity-70 block">Bespoke Brutalist</span>
+                      <span class="text-[9px] opacity-70 block">Bespoke High-End</span>
                     </div>
                   </label>
                 </div>

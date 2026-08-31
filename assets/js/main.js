@@ -117,11 +117,13 @@ function initEstimator() {
   // Rates in IDR / m2
   const rates = {
     new: {
+      basic: 3800000,
       standard: 5500000,
       premium: 8000000,
       luxury: 12000000
     },
     reno: {
+      basic: 2300000,
       standard: 3300000,
       premium: 4800000,
       luxury: 7200000
@@ -149,7 +151,7 @@ function initEstimator() {
 
     if (areaDisplay) areaDisplay.textContent = `${area} m²`;
 
-    const baseRate = rates[projType][finishLevel];
+    const baseRate = rates[projType][finishLevel] || rates[projType]['premium'];
     const structuralMultiplier = 1 + ((floors - 1) * 0.10);
     const exactEstimate = area * baseRate * structuralMultiplier;
 
@@ -174,7 +176,13 @@ function initEstimator() {
 
     if (waConsultBtn) {
       const typeLabel = projType === 'new' ? 'Bangun Baru (Design & Build)' : 'Renovasi Total';
-      const finishLabel = finishLevel === 'standard' ? 'Standard Editorial' : finishLevel === 'premium' ? 'Premium Architectural' : 'Luxury Bespoke';
+      const finishLabels = {
+        basic: 'Ekonomis (Smart Budget & Fungsional)',
+        standard: 'Standard (Editorial Clean)',
+        premium: 'Premium (Architectural Grade)',
+        luxury: 'Luxury (Bespoke High-End)'
+      };
+      const finishLabel = finishLabels[finishLevel] || 'Premium (Architectural Grade)';
       const messageText = `Halo Tim CV Riwan Sejahtera Abadi (RSA),
 
 Saya ingin konsultasi proyek konstruksi berdasarkan simulasi estimasi kalkulator website:
