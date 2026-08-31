@@ -140,19 +140,27 @@ function initEstimator() {
   };
 
   function updateEstimate() {
-    const area = parseInt(areaSlider.value, 10);
+    let area = 250;
+    if (areaSlider && areaSlider.value) {
+      area = parseInt(areaSlider.value, 10);
+      if (isNaN(area) || area < 50) area = 250;
+    }
+
     const projTypeInput = document.querySelector('input[name="proj_type"]:checked');
     const finishLevelInput = document.querySelector('input[name="finish_level"]:checked');
     const floorsInput = document.querySelector('input[name="floors"]:checked');
 
-    const projType = projTypeInput ? projTypeInput.value : 'new';
-    const finishLevel = finishLevelInput ? finishLevelInput.value : 'premium';
-    const floors = floorsInput ? parseInt(floorsInput.value, 10) : 2;
+    const projType = (projTypeInput && projTypeInput.value) ? projTypeInput.value : 'new';
+    const finishLevel = (finishLevelInput && finishLevelInput.value) ? finishLevelInput.value : 'premium';
+    const floors = (floorsInput && floorsInput.value) ? parseInt(floorsInput.value, 10) : 2;
 
-    if (areaDisplay) areaDisplay.textContent = `${area} m²`;
+    if (areaDisplay) {
+      areaDisplay.textContent = `${area} m²`;
+    }
 
-    const baseRate = rates[projType][finishLevel] || rates[projType]['premium'];
-    const structuralMultiplier = 1 + ((floors - 1) * 0.10);
+    const typeRates = rates[projType] || rates.new;
+    const baseRate = typeRates[finishLevel] || typeRates.premium || 8000000;
+    const structuralMultiplier = 1 + (Math.max(0, floors - 1) * 0.10);
     const exactEstimate = area * baseRate * structuralMultiplier;
 
     const lowerBound = exactEstimate * 0.92;
@@ -163,16 +171,19 @@ function initEstimator() {
     const costMep = exactEstimate * 0.20;
 
     if (estimateResult) {
-      estimateResult.style.opacity = '0.3';
-      setTimeout(() => {
-        estimateResult.textContent = `${formatRupiah(lowerBound)} - ${formatRupiah(upperBound)}`;
-        estimateResult.style.opacity = '1';
-      }, 100);
+      estimateResult.textContent = `${formatRupiah(lowerBound)} - ${formatRupiah(upperBound)}`;
+      estimateResult.style.opacity = '1';
     }
 
-    if (breakdownStruktur) breakdownStruktur.textContent = formatRupiah(costStruktur);
-    if (breakdownFinishing) breakdownFinishing.textContent = formatRupiah(costFinishing);
-    if (breakdownMep) breakdownMep.textContent = formatRupiah(costMep);
+    if (breakdownStruktur) {
+      breakdownStruktur.textContent = formatRupiah(costStruktur);
+    }
+    if (breakdownFinishing) {
+      breakdownFinishing.textContent = formatRupiah(costFinishing);
+    }
+    if (breakdownMep) {
+      breakdownMep.textContent = formatRupiah(costMep);
+    }
 
     if (waConsultBtn) {
       const typeLabel = projType === 'new' ? 'Bangun Baru (Design & Build)' : 'Renovasi Total';
@@ -201,11 +212,17 @@ Mohon informasi jadwal temu konsultasi desain arsitektur & survei lokasi. Terima
 
   if (areaSlider) {
     areaSlider.addEventListener('input', updateEstimate);
+    areaSlider.addEventListener('change', updateEstimate);
+  }
+
+  if (form) {
     form.querySelectorAll('input[type="radio"]').forEach(input => {
       input.addEventListener('change', updateEstimate);
+      input.addEventListener('click', updateEstimate);
     });
-    updateEstimate();
   }
+
+  updateEstimate();
 }
 
 /* ==========================================================================
