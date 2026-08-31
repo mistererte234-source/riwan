@@ -1,5 +1,5 @@
 /**
- * RIWAN ARCHITECTURE & CONSTRUCTION (PT RIWAN SEJAHTERA ABADI)
+ * RIWAN ARCHITECTURE & CONSTRUCTION (CV RIWAN SEJAHTERA ABADI)
  * Interactive Application Core Script
  * Crafted with Precision by Lody
  */
@@ -175,7 +175,7 @@ function initEstimator() {
     if (waConsultBtn) {
       const typeLabel = projType === 'new' ? 'Bangun Baru (Design & Build)' : 'Renovasi Total';
       const finishLabel = finishLevel === 'standard' ? 'Standard Editorial' : finishLevel === 'premium' ? 'Premium Architectural' : 'Luxury Bespoke';
-      const messageText = `Halo Tim PT Riwan Sejahtera Abadi (RSA),
+      const messageText = `Halo Tim CV Riwan Sejahtera Abadi (RSA),
 
 Saya ingin konsultasi proyek konstruksi berdasarkan simulasi estimasi kalkulator website:
 • Luas Bangunan: ${area} m²
